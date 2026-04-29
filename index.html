@@ -6,10 +6,209 @@
   <title>Superior Support Living — Home Care in Rochester, MN</title>
   <meta name="description" content="Superior Support Living offers compassionate, personalized 24/7 assisted living in a warm home-like setting in Rochester, MN. Call (507) 200-1418." />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; overflow: hidden;
+      background: var(--brown);
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1576765608866-5b51046452be?w=1400&q=80') center/cover no-repeat;
+      opacity: 0.28;
+    }
+    .hero-inner {
+      position: relative; z-index: 2; width: 100%;
+      display: grid; grid-template-columns: 1fr 380px;
+      gap: 40px; align-items: center;
+    }
+    .hero-content { padding: 120px 0 80px; max-width: 600px; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green); color: #fff;
+      font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 7px 16px; border-radius: 4px; margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(38px, 5vw, 64px);
+      font-weight: 700; line-height: 1.1;
+      color: #fff; margin-bottom: 22px;
+    }
+    .hero h1 span { color: var(--green-light); }
+    .hero-sub { font-size: 17px; color: rgba(255,255,255,0.72); line-height: 1.75; margin-bottom: 36px; max-width: 500px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+    .hero-stats {
+      display: flex;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px; overflow: hidden;
+      backdrop-filter: blur(8px); width: fit-content;
+    }
+    .hero-stat {
+      padding: 18px 28px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-num { font-family: var(--font-head); font-size: 28px; font-weight: 700; color: #fff; line-height: 1; }
+    .hero-stat-num span { color: var(--green-light); }
+    .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px; font-weight: 500; }
+    .hero-card-col { position: relative; padding: 40px 0 80px; }
+    .hero-img-main { border-radius: 20px; overflow: hidden; height: 460px; }
+    .hero-img-main img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-badge-card {
+      position: absolute; bottom: 56px; left: -36px;
+      background: var(--white); border-radius: 16px;
+      padding: 18px 22px; box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+      display: flex; align-items: center; gap: 14px; min-width: 200px;
+    }
+    .badge-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--green-pale); border: 2px solid var(--green-mid); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+    .badge-num { font-family: var(--font-head); font-size: 24px; font-weight: 700; color: var(--text); line-height: 1; }
+    .badge-lbl { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* INTRO */
+    .intro-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .intro-img-wrap { position: relative; }
+    .intro-img-main { border-radius: 20px; overflow: hidden; height: 480px; }
+    .intro-img-main img { width: 100%; height: 100%; object-fit: cover; }
+    .intro-img-accent {
+      position: absolute; bottom: -24px; right: -24px;
+      width: 170px; height: 170px; border-radius: 16px; overflow: hidden;
+      border: 6px solid var(--white); box-shadow: var(--shadow-lg);
+    }
+    .intro-img-accent img { width: 100%; height: 100%; object-fit: cover; }
+    .exp-badge {
+      position: absolute; top: 24px; left: -16px;
+      background: var(--green); color: #fff;
+      border-radius: 14px; padding: 16px 20px;
+      box-shadow: 0 12px 40px rgba(74,115,64,0.4); text-align: center;
+    }
+    .exp-badge .num { font-family: var(--font-head); font-size: 34px; font-weight: 700; line-height: 1; }
+    .exp-badge .lbl { font-size: 11px; font-weight: 600; opacity: 0.85; margin-top: 2px; }
+    .intro-features { display: flex; flex-direction: column; gap: 16px; margin: 28px 0 32px; }
+    .intro-feature {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 18px; border-radius: 14px;
+      border: 1px solid var(--border); background: var(--white);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .intro-feature:hover { box-shadow: var(--shadow); transform: translateX(4px); }
+    .intro-feature-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--green-pale); border: 1px solid var(--green-mid); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .intro-feature h4 { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+    .intro-feature p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* SERVICES */
+    .svc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .svc-card { background: var(--white); border-radius: 20px; overflow: hidden; border: 1px solid var(--border); transition: transform .25s, box-shadow .25s; }
+    .svc-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .svc-img { height: 200px; overflow: hidden; }
+    .svc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .svc-card:hover .svc-img img { transform: scale(1.05); }
+    .svc-body { padding: 24px; }
+    .svc-num { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--green); text-transform: uppercase; margin-bottom: 8px; }
+    .svc-body h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+    .svc-body p { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+
+    /* WHY */
+    .why-section { background: var(--brown); position: relative; overflow: hidden; }
+    .why-section::before { content: ''; position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1609220136736-443140cffec6?w=1200&q=50') center/cover; opacity: 0.07; }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+    .why-left .eyebrow { color: var(--green-light); }
+    .why-left h2 { color: #fff; }
+    .why-left > p { color: rgba(255,255,255,0.65); font-size: 16px; line-height: 1.75; margin: 16px 0 32px; }
+    .why-list { display: flex; flex-direction: column; gap: 16px; }
+    .why-item { display: flex; gap: 14px; align-items: flex-start; }
+    .why-check { width: 28px; height: 28px; border-radius: 50%; background: var(--green); flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+    .why-check svg { width: 14px; height: 14px; color: #fff; }
+    .why-item h4 { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+    .why-item p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+    .why-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .why-photo { border-radius: 14px; overflow: hidden; }
+    .why-photo img { width: 100%; object-fit: cover; display: block; }
+    .why-photo.tall img { height: 280px; }
+    .why-photo.short img { height: 200px; }
+    .why-photo.offset { margin-top: 28px; }
+
+    /* STATS */
+    .stats-bar { background: var(--green); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+    .stat-item { text-align: center; padding: 48px 24px; border-right: 1px solid rgba(255,255,255,0.15); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: var(--font-head); font-size: 52px; font-weight: 700; color: #fff; line-height: 1; }
+    .stat-num sup { font-size: 28px; vertical-align: super; }
+    .stat-label { font-size: 14px; color: rgba(255,255,255,0.65); font-weight: 500; margin-top: 6px; }
+
+    /* TESTIMONIALS */
+    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .testi-card { background: var(--white); border-radius: 20px; padding: 32px; border: 1px solid var(--border); box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
+    .testi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .testi-stars { display: flex; gap: 3px; margin-bottom: 16px; }
+    .testi-stars span { color: #f59e0b; font-size: 16px; }
+    .testi-quote { font-size: 15px; color: var(--muted); line-height: 1.75; flex: 1; margin-bottom: 24px; font-style: italic; position: relative; }
+    .testi-quote::before { content: '\201C'; font-size: 56px; color: var(--green-mid); line-height: 0; vertical-align: -22px; margin-right: 2px; font-family: var(--font-head); }
+    .testi-author { display: flex; align-items: center; gap: 14px; border-top: 1px solid var(--border); padding-top: 20px; }
+    .testi-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--green-pale); border: 2px solid var(--green-mid); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .testi-name { font-size: 15px; font-weight: 600; color: var(--text); }
+    .testi-role { font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+    /* TEAM */
+    .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    .team-card { border-radius: 20px; overflow: hidden; border: 1px solid var(--border); transition: transform .2s, box-shadow .2s; }
+    .team-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .team-img { height: 280px; overflow: hidden; }
+    .team-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .team-card:hover .team-img img { transform: scale(1.04); }
+    .team-body { padding: 24px; }
+    .team-body h3 { font-size: 19px; font-weight: 600; margin-bottom: 3px; }
+    .team-role { font-size: 13px; color: var(--green); font-weight: 600; margin-bottom: 10px; }
+    .team-body p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* GALLERY */
+    .gallery-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 240px 240px; gap: 14px; }
+    .gallery-item { border-radius: 16px; overflow: hidden; position: relative; }
+    .gallery-item.span2 { grid-row: span 2; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gal-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top,rgba(42,31,18,.75),transparent); padding: 28px 16px 14px; font-size: 13px; font-weight: 600; color: #fff; }
+
+    /* FAQ */
+    .faq-split { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+    .faq-left p { color: var(--muted); font-size: 16px; line-height: 1.75; margin: 14px 0 28px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-card-col { display: none; }
+      .hero-content { padding: 100px 0 60px; }
+    }
+    @media (max-width: 900px) {
+      .intro-split, .why-grid, .faq-split { grid-template-columns: 1fr; gap: 40px; }
+      .intro-img-accent, .exp-badge { display: none; }
+      .why-photos { display: none; }
+      .svc-grid { grid-template-columns: 1fr 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat-item { border-bottom: 1px solid rgba(255,255,255,0.12); }
+      .testi-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
+      .gallery-item.span2 { grid-row: span 1; }
+    }
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 32px; }
+      .hero-btns { flex-direction: column; }
+      .hero-btns .btn { justify-content: center; }
+      .hero-stats { flex-wrap: wrap; width: 100%; }
+      .hero-stat { flex: 1 1 calc(33% - 1px); }
+      .svc-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px 160px; }
+      .faq-split { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ─── NAV ─── -->
 <nav class="nav">
   <div class="container">
     <a href="index.html" class="nav-logo">Superior <span>Support</span> Living</a>
@@ -18,268 +217,316 @@
       <li><a href="about.html">About</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li>
-        <a href="tel:5072001418" class="nav-phone">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .11h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-          (507) 200-1418
-        </a>
-      </li>
+      <li><a href="tel:5072001418" class="nav-phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .11h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        (507) 200-1418
+      </a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
-
-<!-- Mobile nav -->
 <div class="mobile-nav" id="mobile-nav">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="services.html">Services</a>
-  <a href="contact.html">Contact</a>
-  <a href="tel:5072001418" class="nav-phone">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .11h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-    (507) 200-1418
-  </a>
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="contact.html">Contact</a>
+  <a href="tel:5072001418" class="nav-phone" style="width:fit-content">📞 (507) 200-1418</a>
 </div>
 
 <div class="page-body">
 
-  <!-- ─── HERO ─── -->
-  <section style="background: var(--cream); overflow: hidden;">
-    <div class="hero-split" style="display:grid; grid-template-columns:1fr 1fr; align-items:center; min-height:calc(100vh - var(--nav-h));">
-    <div class="hero-content" style="padding: 72px 28px; max-width: 600px; margin-left: auto;">
-      <div class="badge fade-up" style="margin-bottom: 24px;">
-        <div class="badge-dot"></div>
-        Licensed Care Facility · Rochester, MN
-      </div>
-      <h1 class="h1 fade-up d1" style="margin-bottom: 20px;">A Real Home.<br><em>Compassionate Care.</em><br>Peace of Mind.</h1>
-      <p style="font-size: 17px; color: var(--muted); line-height: 1.7; margin-bottom: 36px; max-width: 460px;" class="fade-up d2">
-        At Superior Support Living, your loved one is more than a resident — they're family. We provide personalized, 24/7 support in a warm, home-like setting right here in Rochester, MN.
-      </p>
-      <div class="hero-actions fade-up d3" style="display: flex; gap: 14px; align-items: center; margin-bottom: 40px; flex-wrap: wrap;">
-        <a href="tel:5072001418" class="btn btn-primary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .11h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-          Call (507) 200-1418
-        </a>
-        <a href="contact.html" class="link-arrow">
-          Schedule a Visit
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-      <div class="trust-row fade-up d4">
-        <div class="trust-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          24/7 Support
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Licensed Care · Rochester, MN
+          </div>
+          <h1>We Make Every<br><span>Senior Feel</span><br>at Home.</h1>
+          <p class="hero-sub">Superior Support Living provides compassionate, 24/7 personalized care in a warm residential setting — not a facility, a real home with real care.</p>
+          <div class="hero-btns">
+            <a href="tel:5072001418" class="btn btn-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .11h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+              Call (507) 200-1418
+            </a>
+            <a href="contact.html" class="btn" style="background:rgba(255,255,255,0.1);color:#fff;border:1.5px solid rgba(255,255,255,0.3);">Schedule a Visit</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat"><div class="hero-stat-num">24<span>/7</span></div><div class="hero-stat-label">Care Support</div></div>
+            <div class="hero-stat"><div class="hero-stat-num">100<span>%</span></div><div class="hero-stat-label">Dedicated Staff</div></div>
+            <div class="hero-stat"><div class="hero-stat-num">5<span>★</span></div><div class="hero-stat-label">Family Rated</div></div>
+          </div>
         </div>
-        <div class="trust-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-          Family-Involved Care
-        </div>
-        <div class="trust-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          Home-Like Setting
-        </div>
-        <div class="trust-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-          Licensed & Trained
+        <div class="hero-card-col">
+          <div class="hero-img-main">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=700&q=80" alt="Caregiver helping resident" />
+          </div>
+          <div class="hero-badge-card">
+            <div class="badge-icon">🏠</div>
+            <div>
+              <div class="badge-num">Home First</div>
+              <div class="badge-lbl">Real home, not a facility</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Hero image side -->
-    <div class="hero-img" style="height: 100%; min-height: 600px; position: relative; overflow: hidden;">
-      <img
-        src="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=900&q=80"
-        alt="Compassionate caregiver helping an elderly resident"
-        style="width:100%; height:100%; object-fit:cover; object-position: center top;"
-      />
-      <div class="gradient-fade" style="position:absolute;inset:0;background:linear-gradient(to right, var(--cream) 0%, transparent 18%);"></div>
-      <!-- Floating card -->
-      <div class="floating-card" style="position:absolute;bottom:32px;right:32px;background:rgba(255,255,255,0.95);border-radius:var(--radius);padding:18px 22px;backdrop-filter:blur(8px);border:1px solid var(--border);box-shadow:var(--shadow-lg);">
-        <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--brown-light);margin-bottom:4px;">Our Promise</div>
-        <div style="font-family:var(--font-head);font-size:18px;font-weight:700;color:var(--text);margin-bottom:2px;">Care Like Family</div>
-        <div style="font-size:13px;color:var(--muted);">Every single day.</div>
+  <!-- INTRO -->
+  <section class="section" style="background:var(--white);">
+    <div class="container">
+      <div class="intro-split">
+        <div class="intro-img-wrap">
+          <div class="exp-badge"><div class="num">15+</div><div class="lbl">Years of<br>Experience</div></div>
+          <div class="intro-img-main"><img src="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=800&q=80" alt="Caregiver with resident" /></div>
+          <div class="intro-img-accent"><img src="1777324866718_image.png" alt="Living room" /></div>
+        </div>
+        <div>
+          <div class="eyebrow">Who We Are</div>
+          <h2 class="h2">We Make a Difference<br>in <em>Senior Living</em></h2>
+          <p style="color:var(--muted);font-size:16px;line-height:1.75;margin:16px 0 0;">We believe every person deserves to age with dignity, comfort, and joy. We're not a large nursing facility — we're a real home in Rochester, MN where your loved one is known by name, not room number.</p>
+          <div class="intro-features">
+            <div class="intro-feature">
+              <div class="intro-feature-icon">🏡</div>
+              <div><h4>Expert Home-Style Care</h4><p>Trained caregivers delivering personalized 1-on-1 attention in a real residential home — not an institutional ward.</p></div>
+            </div>
+            <div class="intro-feature">
+              <div class="intro-feature-icon">👨‍👩‍👧</div>
+              <div><h4>Family-Centered Approach</h4><p>Families are part of our team. We keep you informed, involved, and welcome at every step of your loved one's care.</p></div>
+            </div>
+            <div class="intro-feature">
+              <div class="intro-feature-icon">💊</div>
+              <div><h4>Full Daily Support Services</h4><p>From medication management to meals, mobility, and companionship — we cover everything, every single day.</p></div>
+            </div>
+          </div>
+          <a href="about.html" class="btn btn-primary">Learn More About Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" style="background:var(--cream-dark);">
+    <div class="container">
+      <div style="text-align:center;max-width:600px;margin:0 auto 52px;">
+        <div class="eyebrow">What We Offer</div>
+        <h2 class="h2">High Quality Care &amp; Services<br>We Stand Behind</h2>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-card">
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=600&q=80" alt="Personal Care" /></div>
+          <div class="svc-body"><div class="svc-num">01 — Service</div><h3>Personal Care &amp; Hygiene</h3><p>Dignified, respectful assistance with daily routines — bathing, grooming, dressing — always with patience and care.</p><a href="services.html" class="link-arrow">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80" alt="Medication" /></div>
+          <div class="svc-body"><div class="svc-num">02 — Service</div><h3>Medication Management</h3><p>Right medication, right time, every time. We track prescriptions and keep families fully informed.</p><a href="services.html" class="link-arrow">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?w=600&q=80" alt="Meals" /></div>
+          <div class="svc-body"><div class="svc-num">03 — Service</div><h3>Home-Cooked Meals</h3><p>Fresh, balanced meals tailored to dietary needs, served in a warm social setting that feels like family dinner.</p><a href="services.html" class="link-arrow">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80" alt="Mobility" /></div>
+          <div class="svc-body"><div class="svc-num">04 — Service</div><h3>Mobility &amp; Safety Support</h3><p>We assist with walking, transfers, and physical activity — preserving independence while preventing falls.</p><a href="services.html" class="link-arrow">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80" alt="Companionship" /></div>
+          <div class="svc-body"><div class="svc-num">05 — Service</div><h3>Companionship &amp; Activities</h3><p>Real relationships and meaningful activities — because emotional wellbeing matters just as much as physical health.</p><a href="services.html" class="link-arrow">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-img"><img src="1777324900011_image.png" alt="Housekeeping" /></div>
+          <div class="svc-body"><div class="svc-num">06 — Service</div><h3>Housekeeping &amp; Laundry</h3><p>A clean, fresh, and comfortable home — we handle all housekeeping and laundry so residents can relax worry-free.</p><a href="services.html" class="link-arrow">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px;"><a href="services.html" class="btn btn-outline">View All Services</a></div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section why-section">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-left">
+          <div class="eyebrow">Why Choose Us</div>
+          <h2 class="h2">We Believe We Can<br>Save More Lives</h2>
+          <p>Our approach to care is different. We're doing the right thing — building genuine relationships and delivering real, compassionate support every single day.</p>
+          <div class="why-list">
+            <div class="why-item">
+              <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div><h4>A Real Home, Not a Facility</h4><p>Small, residential, and personal — your loved one lives in a real neighborhood home.</p></div>
+            </div>
+            <div class="why-item">
+              <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div><h4>Complete Medical Support</h4><p>Medication management, mobility help, and health monitoring — all included daily.</p></div>
+            </div>
+            <div class="why-item">
+              <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div><h4>Family Always Involved</h4><p>We keep families informed, welcome visits anytime, and treat you as partners in care.</p></div>
+            </div>
+            <div class="why-item">
+              <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div><h4>Compassionate, Trained Caregivers</h4><p>We hire for heart. Every caregiver is selected for both skills and genuine care for people.</p></div>
+            </div>
+          </div>
+          <a href="about.html" class="btn btn-primary" style="margin-top:32px;">Discover Our Story</a>
+        </div>
+        <div class="why-photos">
+          <div class="why-photo tall"><img src="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=500&q=80" alt="Caregiver" /></div>
+          <div class="why-photo short offset"><img src="1777324919196_image.png" alt="Our home" /></div>
+          <div class="why-photo short"><img src="1777324880908_image.png" alt="Bedroom" /></div>
+          <div class="why-photo tall"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&q=80" alt="Care" /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item"><div class="stat-num">15<sup>+</sup></div><div class="stat-label">Years of Experience</div></div>
+        <div class="stat-item"><div class="stat-num">50<sup>+</sup></div><div class="stat-label">Families Served</div></div>
+        <div class="stat-item"><div class="stat-num">24<sup>/7</sup></div><div class="stat-label">Hours of Care</div></div>
+        <div class="stat-item"><div class="stat-num">5<sup>★</sup></div><div class="stat-label">Family Satisfaction</div></div>
       </div>
     </div>
   </div>
-  </section>
 
-  <!-- ─── WHY CHOOSE US ─── -->
-  <section class="section" style="background: var(--white);">
+  <!-- TESTIMONIALS -->
+  <section class="section" style="background:var(--cream);">
     <div class="container">
-      <div style="text-align:center; max-width: 640px; margin: 0 auto 56px;">
-        <div class="eyebrow">Why Choose Us</div>
-        <h2 class="h2">Why Families Trust<br><em>Superior Support Living</em></h2>
-        <p style="color:var(--muted);margin-top:16px;font-size:16px;line-height:1.7;">We know choosing care for someone you love is one of the most important decisions you'll ever make. That's why we've built a place that doesn't feel like a facility — it feels like a home.</p>
+      <div style="text-align:center;max-width:560px;margin:0 auto 52px;">
+        <div class="eyebrow">Testimonials</div>
+        <h2 class="h2">What Our Families<br>Have to Say</h2>
       </div>
-      <div class="grid-2" style="gap: 32px;">
-        <div class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testi-quote">Moving my mother here was the best decision our family ever made. The staff treat her like their own family. She is happy, well-fed, and cared for every single day.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">👩</div>
+            <div><div class="testi-name">Sarah M.</div><div class="testi-role">Daughter of a Resident</div></div>
           </div>
-          <h3 class="h3" style="margin-bottom:10px;">A Home, Not a Facility</h3>
-          <p style="color:var(--muted);font-size:15px;line-height:1.7;">We operate as a small residential home — not a large institution. Your loved one gets to live in a real neighborhood with a familiar, comfortable environment.</p>
         </div>
-        <div class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        <div class="testi-card">
+          <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testi-quote">I was worried about finding the right place for my father after his injury. Superior Support Living felt like a home from day one — not a facility. We couldn't be more grateful.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">👨</div>
+            <div><div class="testi-name">James R.</div><div class="testi-role">Son of a Resident</div></div>
           </div>
-          <h3 class="h3" style="margin-bottom:10px;">Personalized, 1-on-1 Attention</h3>
-          <p style="color:var(--muted);font-size:15px;line-height:1.7;">Because we serve a small number of residents, every person receives focused, individualized attention. We learn routines, preferences, and personalities — and we adapt accordingly.</p>
         </div>
-        <div class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        <div class="testi-card">
+          <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testi-quote">As a case manager, I refer clients here with full confidence. The caregivers are attentive, the home is warm, and communication with families is excellent throughout.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">👩‍⚕️</div>
+            <div><div class="testi-name">Linda T.</div><div class="testi-role">Social Worker / Case Manager</div></div>
           </div>
-          <h3 class="h3" style="margin-bottom:10px;">Families Are Part of the Team</h3>
-          <p style="color:var(--muted);font-size:15px;line-height:1.7;">We don't just welcome family visits — we encourage them. You'll always know what's happening with your loved one, and our staff is available whenever you have questions.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h3 class="h3" style="margin-bottom:10px;">Trained, Compassionate Caregivers</h3>
-          <p style="color:var(--muted);font-size:15px;line-height:1.7;">Our team is carefully selected not just for qualifications, but for character. We hire people who genuinely care — and it shows in every interaction, every day.</p>
         </div>
       </div>
+      <p style="text-align:center;font-size:12px;color:var(--brown-light);margin-top:20px;font-style:italic;">* Placeholder testimonials — real reviews will replace these soon.</p>
     </div>
   </section>
 
-  <!-- ─── SERVICES PREVIEW ─── -->
-  <section class="section" style="background: var(--cream-dark);">
+  <!-- TEAM -->
+  <section class="section" style="background:var(--white);">
     <div class="container">
-      <div class="services-split" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
-        <div>
-          <div class="eyebrow">What We Offer</div>
-          <h2 class="h2" style="margin-bottom:20px;">How We Support Your Loved One <em>Every Day</em></h2>
-          <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:32px;">From morning routines to meaningful activities, our team is there every step of the way with thoughtful, personalized care.</p>
-          <ul style="display:flex;flex-direction:column;gap:14px;margin-bottom:36px;">
-            <li style="display:flex;align-items:center;gap:12px;font-size:15px;color:var(--muted);">
-              <span style="width:28px;height:28px;border-radius:50%;background:var(--green-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              </span>
-              Personal care &amp; hygiene
-            </li>
-            <li style="display:flex;align-items:center;gap:12px;font-size:15px;color:var(--muted);">
-              <span style="width:28px;height:28px;border-radius:50%;background:var(--green-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              </span>
-              Nutritious home-cooked meals
-            </li>
-            <li style="display:flex;align-items:center;gap:12px;font-size:15px;color:var(--muted);">
-              <span style="width:28px;height:28px;border-radius:50%;background:var(--green-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              </span>
-              Medication management
-            </li>
-            <li style="display:flex;align-items:center;gap:12px;font-size:15px;color:var(--muted);">
-              <span style="width:28px;height:28px;border-radius:50%;background:var(--green-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              </span>
-              Mobility &amp; fall prevention
-            </li>
-            <li style="display:flex;align-items:center;gap:12px;font-size:15px;color:var(--muted);">
-              <span style="width:28px;height:28px;border-radius:50%;background:var(--green-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              </span>
-              Companionship &amp; meaningful activities
-            </li>
-          </ul>
-          <a href="services.html" class="btn btn-primary">See All Services</a>
+      <div style="text-align:center;max-width:560px;margin:0 auto 52px;">
+        <div class="eyebrow">Our People</div>
+        <h2 class="h2">The Amazing Team<br>Behind Our Care</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-img"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&q=80" alt="Care Manager" /></div>
+          <div class="team-body"><h3>Care Manager</h3><div class="team-role">Lead Caregiver &amp; Home Manager</div><p>Oversees daily operations and ensures every resident receives consistent, compassionate care tailored to their individual needs.</p></div>
         </div>
-        <div class="photo-mosaic" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-          <img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?w=400&q=80" alt="Caregiver assisting resident" style="border-radius:var(--radius-lg);height:220px;object-fit:cover;width:100%;" />
-          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80" alt="Resident enjoying meal" style="border-radius:var(--radius-lg);height:220px;object-fit:cover;width:100%;margin-top:28px;" />
-          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80" alt="Care team" style="border-radius:var(--radius-lg);height:220px;object-fit:cover;width:100%;margin-top:-28px;" />
-          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80" alt="Home environment" style="border-radius:var(--radius-lg);height:220px;object-fit:cover;width:100%;" />
+        <div class="team-card">
+          <div class="team-img"><img src="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=500&q=80" alt="Caregiver" /></div>
+          <div class="team-body"><h3>Caregiver Team</h3><div class="team-role">Personal Care Specialists</div><p>Handpicked for their empathy, professionalism, and genuine passion for supporting those in their care every single day.</p></div>
+        </div>
+        <div class="team-card">
+          <div class="team-img"><img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?w=500&q=80" alt="Support Staff" /></div>
+          <div class="team-body"><h3>Support Staff</h3><div class="team-role">Meals, Housekeeping &amp; Activities</div><p>From nutritious home-cooked meals to a clean, welcoming environment — our support team keeps everything running warmly.</p></div>
         </div>
       </div>
+      <p style="text-align:center;font-size:12px;color:var(--brown-light);margin-top:20px;font-style:italic;">* Placeholder profiles — real team photos and bios will be added soon.</p>
     </div>
   </section>
 
-  <!-- ─── FACILITY PHOTOS ─── -->
-  <section class="section-sm" style="background:var(--white);">
+  <!-- GALLERY -->
+  <section class="section" style="background:var(--cream-dark);">
     <div class="container">
-      <div style="text-align:center;margin-bottom:36px;">
+      <div style="text-align:center;max-width:560px;margin:0 auto 48px;">
         <div class="eyebrow">Our Home</div>
-        <h2 class="h2">Take a Look Inside</h2>
+        <h2 class="h2">A Beautiful Place<br>You'd Love to Live In</h2>
       </div>
-      <div class="photo-strip" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-        <div style="position:relative;border-radius:var(--radius-lg);overflow:hidden;height:240px;">
-          <img src="1777324866718_image.png" alt="Cozy living room with fireplace" style="width:100%;height:100%;object-fit:cover;" />
-          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(42,31,18,.7),transparent);padding:20px 16px 14px;">
-            <div style="font-size:13px;font-weight:600;color:var(--white);">Living Room</div>
-          </div>
+      <div class="gallery-grid">
+        <div class="gallery-item span2"><img src="1777324866718_image.png" alt="Living room" /><div class="gal-label">Living Room — Warm &amp; Welcoming</div></div>
+        <div class="gallery-item"><img src="1777324880908_image.png" alt="Bedroom" /><div class="gal-label">Private Bedroom</div></div>
+        <div class="gallery-item"><img src="1777324900011_image.png" alt="Bathroom" /><div class="gal-label">Spacious Bathroom</div></div>
+        <div class="gallery-item"><img src="1777324919196_image.png" alt="Exterior" /><div class="gal-label">Our Home — Rochester, MN</div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80" alt="Care" /><div class="gal-label">Daily Care &amp; Activities</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="background:var(--white);">
+    <div class="container">
+      <div class="faq-split">
+        <div class="faq-left">
+          <div class="eyebrow">FAQ</div>
+          <h2 class="h2">Frequently Asked<br>Questions</h2>
+          <p>Have more questions? We're always happy to talk. Call us anytime — no pressure, just honest answers.</p>
+          <a href="tel:5072001418" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .11h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            Call (507) 200-1418
+          </a>
         </div>
-        <div style="position:relative;border-radius:var(--radius-lg);overflow:hidden;height:240px;">
-          <img src="1777324880908_image.png" alt="Private bedroom" style="width:100%;height:100%;object-fit:cover;" />
-          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(42,31,18,.7),transparent);padding:20px 16px 14px;">
-            <div style="font-size:13px;font-weight:600;color:var(--white);">Private Bedroom</div>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <button class="faq-q">What types of residents do you serve?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            <div class="faq-a"><p>We support adults with a range of care needs including individuals with disabilities, developmental support needs, brain injuries, and general assisted living. Call us to discuss whether we're the right fit.</p></div>
           </div>
-        </div>
-        <div style="position:relative;border-radius:var(--radius-lg);overflow:hidden;height:240px;">
-          <img src="1777324900011_image.png" alt="Spacious bathroom" style="width:100%;height:100%;object-fit:cover;" />
-          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(42,31,18,.7),transparent);padding:20px 16px 14px;">
-            <div style="font-size:13px;font-weight:600;color:var(--white);">Bathroom</div>
+          <div class="faq-item">
+            <button class="faq-q">Can family members visit anytime?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            <div class="faq-a"><p>Absolutely — and we encourage it. Family involvement is a core part of how we care for residents. You're welcome to visit, join meals, and stay fully connected.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">Is this a large facility or a private home?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            <div class="faq-a"><p>We operate as a small, private residential home — not a large nursing facility. This means more personal attention, quieter days, and an environment that truly feels like home.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">How do I get started?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            <div class="faq-a"><p>The easiest first step is to call us at (507) 200-1418. We'll talk through your needs, answer your questions, and arrange a visit if you'd like to see the home. No pressure — just honest guidance.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">What areas do you serve?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            <div class="faq-a"><p>We are based in Rochester, MN and primarily serve residents and families in the greater Rochester area.</p></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── FAQ ─── -->
-  <section class="section" style="background: var(--cream);">
-    <div class="container" style="max-width: 760px;">
-      <div style="text-align:center; margin-bottom: 48px;">
-        <div class="eyebrow">FAQ</div>
-        <h2 class="h2">Questions Families Often Ask</h2>
-      </div>
-      <div class="faq-list">
-        <div class="faq-item open">
-          <button class="faq-q">What types of residents do you serve?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-          <div class="faq-a"><p>We support adults with a range of care needs, including individuals with disabilities, developmental support needs, brain injuries, and those requiring general assisted living. We welcome an initial call to discuss whether we're the right fit for your loved one.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Can family members visit?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-          <div class="faq-a"><p>Absolutely — and we encourage it. Family involvement is a core part of how we care for residents. You're welcome to visit, join meals, and stay connected. Just give us a heads up so we can prepare a warm welcome.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Is this a large facility or a private home?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-          <div class="faq-a"><p>We operate as a small, private residential home — not a large nursing facility. Smaller settings mean more personal attention, quieter days, and an environment that actually feels like home.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">How do I get started?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-          <div class="faq-a"><p>The easiest first step is to give us a call at (507) 200-1418. We'll have a friendly conversation, answer your questions, and arrange a visit if you'd like to see the home in person. There's no pressure — just honest guidance.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">What areas do you serve?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-          <div class="faq-a"><p>We are based in Rochester, MN and primarily serve residents and families in the greater Rochester area.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── CTA BANNER ─── -->
+  <!-- CTA -->
   <section class="section-sm">
     <div class="container">
       <div class="cta-banner">
         <h2>Ready to Find the Right Care for Your Loved One?</h2>
-        <p>Give us a call or send a message — we're happy to answer your questions and help you take the next step. No pressure, just honest guidance.</p>
+        <p>Give us a call or send a message — we're happy to answer your questions and help you take the next step.</p>
         <div class="btn-row">
-          <a href="tel:5072001418" class="btn btn-white">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .11h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-            Call (507) 200-1418
-          </a>
-          <a href="contact.html" class="btn btn-outline" style="background:transparent;color:white;border-color:rgba(255,255,255,0.5);">Schedule a Visit</a>
+          <a href="tel:5072001418" class="btn btn-white">📞 Call (507) 200-1418</a>
+          <a href="contact.html" class="btn" style="background:transparent;color:white;border:2px solid rgba(255,255,255,0.4);">Schedule a Visit</a>
         </div>
       </div>
     </div>
   </section>
 
-</div><!-- end page-body -->
+</div>
 
-<!-- ─── FOOTER ─── -->
 <footer>
   <div class="container">
     <div class="footer-grid">
@@ -289,34 +536,19 @@
         <div class="footer-contact">
           <a href="tel:5072001418">📞 (507) 200-1418</a>
           <a href="mailto:info@superiorsupportliving.com">✉ info@superiorsupportliving.com</a>
-          <a href="https://maps.google.com/?q=3543+Stone+Point+Dr+NE+Rochester+MN+55906" target="_blank">📍 3543 Stone Point Dr NE, Rochester, MN 55906</a>
+          <a href="https://maps.google.com/?q=3543+Stone+Point+Dr+NE+Rochester+MN" target="_blank">📍 3543 Stone Point Dr NE, Rochester, MN 55906</a>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Pages</h4>
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="services.html">Services</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <a href="services.html">Personal Care</a>
-        <a href="services.html">Medication Help</a>
-        <a href="services.html">Meals & Nutrition</a>
-        <a href="services.html">Companionship</a>
-        <a href="privacy.html">Privacy Policy</a>
-      </div>
+      <div class="footer-col"><h4>Pages</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Services</a><a href="contact.html">Contact</a></div>
+      <div class="footer-col"><h4>Services</h4><a href="services.html">Personal Care</a><a href="services.html">Medication Help</a><a href="services.html">Meals &amp; Nutrition</a><a href="services.html">Companionship</a><a href="privacy.html">Privacy Policy</a></div>
     </div>
     <div class="footer-bottom">© 2026 Superior Support Living. All rights reserved.</div>
   </div>
 </footer>
 
 <script>
-  const hamburger = document.getElementById('hamburger');
-  const mobileNav = document.getElementById('mobile-nav');
-  hamburger.addEventListener('click', () => {
-    mobileNav.classList.toggle('open');
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobile-nav').classList.toggle('open');
     document.body.classList.toggle('nav-open');
   });
   document.querySelectorAll('.faq-q').forEach(btn => {
