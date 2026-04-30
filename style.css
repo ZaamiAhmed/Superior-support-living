@@ -6,8 +6,8 @@
   --green-light: #7a9e6e;
   --green-pale:  #edf3eb;
   --green-mid:   #c8dfc2;
-  --cream:       #f9f6f1;
-  --cream-dark:  #f0ebe2;
+  --cream:       #f4f7f4;
+  --cream-dark:  #f4f7f4;
   --brown:       #3b2f1e;
   --brown-mid:   #5c4f3d;
   --brown-light: #9e8e7a;
@@ -133,17 +133,35 @@ body.nav-open { overflow: hidden; }
 .cta-banner .btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
 /* ─── FOOTER ─── */
-footer { background: var(--brown); color: rgba(255,255,255,0.75); padding: 56px 0 28px; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
-.footer-logo { font-family: var(--font-head); font-size: 22px; color: var(--white); margin-bottom: 12px; }
-.footer-logo span { color: var(--green-light); }
-.footer-tagline { font-size: 14px; line-height: 1.65; margin-bottom: 20px; }
-.footer-contact a { display: block; font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 6px; transition: color .2s; }
-.footer-contact a:hover { color: var(--white); }
-.footer-col h4 { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--white); margin-bottom: 16px; }
-.footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 10px; transition: color .2s; }
-.footer-col a:hover { color: var(--white); }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; font-size: 13px; text-align: center; color: rgba(255,255,255,0.4); }
+footer {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 64px 0 0;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-logo { font-family: var(--font-head); font-size: 22px; color: var(--brown); margin-bottom: 12px; }
+.footer-logo span { color: var(--green); }
+.footer-tagline { font-size: 14px; line-height: 1.7; color: var(--muted); margin-bottom: 20px; }
+.footer-contact a { display: block; font-size: 14px; color: var(--muted); margin-bottom: 8px; transition: color .2s; }
+.footer-contact a:hover { color: var(--green); }
+.footer-col h4 { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--brown); margin-bottom: 18px; }
+.footer-col a { display: block; font-size: 16px; font-weight: 500; color: var(--muted); margin-bottom: 12px; transition: color .2s; }
+.footer-col a:hover { color: var(--green); }
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 20px 0;
+  margin-top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--brown-light);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.footer-bottom-links { display: flex; gap: 20px; }
+.footer-bottom-links a { font-size: 13px; color: var(--brown-light); transition: color .2s; }
+.footer-bottom-links a:hover { color: var(--green); }
 
 /* ─── PAGE HERO (inner pages) ─── */
 .page-hero { background: var(--brown); padding: 72px 0 64px; text-align: center; }
@@ -206,6 +224,7 @@ footer { background: var(--brown); color: rgba(255,255,255,0.75); padding: 56px 
   .grid-3 { grid-template-columns: 1fr; }
 
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
   .form-grid   { grid-template-columns: 1fr; }
   .form-group.full { grid-column: 1; }
 
@@ -329,6 +348,8 @@ footer { background: var(--brown); color: rgba(255,255,255,0.75); padding: 56px 
 
   /* Footer */
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .footer-bottom-links { flex-wrap: wrap; }
   .footer-logo { font-size: 18px; }
 
   /* CTA banner */
