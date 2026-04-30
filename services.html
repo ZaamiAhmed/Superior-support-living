@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Services — Superior Support Living</title>
+  <meta name="description" content="Explore the full range of assisted living services at Superior Support Living — personal care, meals, medication management, companionship and more in Rochester, MN." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* PAGE HERO */
+    .page-hero {
+      background: var(--brown);
+      padding: 88px 0 72px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url('img_companionship.png') center/cover;
+      opacity: 0.15;
+    }
+    .page-hero .container { position: relative; z-index: 1; }
+    .page-hero .eyebrow { color: var(--green-light); margin-bottom: 14px; }
+    .page-hero h1 { font-family: var(--font-head); font-size: clamp(30px,4vw,48px); color: #fff; margin-bottom: 16px; }
+    .page-hero p { font-size: 17px; color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto; line-height: 1.75; }
+
+    /* SERVICE CARD — with real photo */
+    .svc-photo-card {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; border-radius: 20px; overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      background: var(--white);
+      transition: box-shadow .25s;
+    }
+    .svc-photo-card:hover { box-shadow: var(--shadow-lg); }
+    .svc-photo-card.reverse { direction: rtl; }
+    .svc-photo-card.reverse > * { direction: ltr; }
+    .svc-photo-card .svc-img { height: 320px; overflow: hidden; }
+    .svc-photo-card .svc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .svc-photo-card:hover .svc-img img { transform: scale(1.04); }
+    .svc-photo-card .svc-content { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+    .svc-num { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
+    .svc-content h2 { font-family: var(--font-head); font-size: 26px; font-weight: 700; margin-bottom: 14px; color: var(--text); }
+    .svc-content p { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 20px; }
+    .svc-bullets { display: flex; flex-direction: column; gap: 8px; }
+    .svc-bullet { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--muted); }
+    .svc-bullet::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); margin-top: 8px; flex-shrink: 0; }
+
+    /* SERVICE CARD — icon style (no photo) */
+    .svc-icon-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-bottom: 28px; }
+    .svc-icon-card {
+      background: var(--white); border-radius: 20px;
+      padding: 36px 32px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: flex; flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .svc-icon-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .svc-icon-wrap {
+      width: 72px; height: 72px; border-radius: 20px;
+      background: var(--green-pale); border: 2px solid var(--green-mid);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .svc-icon-wrap svg { width: 36px; height: 36px; color: var(--green); }
+    .svc-icon-card h3 { font-family: var(--font-head); font-size: 21px; font-weight: 600; margin-bottom: 12px; }
+    .svc-icon-card p { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 18px; flex: 1; }
+    .svc-icon-card .svc-bullets { margin-top: auto; }
+
+    /* ADDITIONAL */
+    .add-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; max-width: 900px; margin: 0 auto; }
+    .add-item { background: var(--white); border-radius: var(--radius); padding: 20px 22px; border: 1px solid var(--border); display: flex; align-items: center; gap: 14px; transition: box-shadow .2s; }
+    .add-item:hover { box-shadow: var(--shadow); }
+    .add-item .add-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--green-pale); border: 1px solid var(--green-mid); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .add-item .add-icon svg { width: 22px; height: 22px; color: var(--green); }
+    .add-item span { font-size: 15px; font-weight: 500; color: var(--brown-mid); }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 240px 240px;
+      gap: 14px;
+    }
+    .gallery-item { border-radius: 16px; overflow: hidden; position: relative; }
+    .gallery-item.span2 { grid-row: span 2; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; display: block; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gal-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top,rgba(42,31,18,.75),transparent); padding: 28px 16px 14px; font-size: 13px; font-weight: 600; color: #fff; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .svc-photo-card { grid-template-columns: 1fr; }
+      .svc-photo-card .svc-img { height: 240px; }
+      .svc-photo-card.reverse { direction: ltr; }
+      .svc-icon-grid { grid-template-columns: 1fr; }
+      .add-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
+      .gallery-item.span2 { grid-row: span 1; }
+    }
+    @media (max-width: 600px) {
+      .add-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px 160px; }
+      .svc-content { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-logo">Superior <span>Support</span> Living</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pages.html#about">About</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="pages.html#contact">Contact</a></li>
+      <li><a href="tel:5072001418" class="nav-phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .11h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        (507) 200-1418
+      </a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html">Home</a>
+  <a href="pages.html#about">About</a>
+  <a href="services.html">Services</a>
+  <a href="pages.html#contact">Contact</a>
+  <a href="tel:5072001418" class="nav-phone" style="width:fit-content">📞 (507) 200-1418</a>
+</div>
+
+<div class="page-body">
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="eyebrow">What We Offer</div>
+      <h1>Care That Fits<br>Your Loved One's Life</h1>
+      <p>Everyone's needs are different. We build our care around each person — not the other way around.</p>
+    </div>
+  </div>
+
+  <!-- ══════ CORE SERVICES ══════ -->
+  <section class="section" style="background:var(--white);">
+    <div class="container">
+      <div style="text-align:center;max-width:620px;margin:0 auto 56px;">
+        <div class="eyebrow">Core Services</div>
+        <h2 class="h2">What We Do Every Day</h2>
+        <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-top:16px;">From personal care to meaningful activities — our team is there every step of the way with respectful, high-quality support.</p>
+      </div>
+
+      <!-- Companionship — real photo -->
+      <div class="svc-photo-card">
+        <div class="svc-img"><img src="img_companionship.png" alt="Caregiver and resident enjoying puzzle together" /></div>
+        <div class="svc-content">
+          <div class="svc-num">01 — Service</div>
+          <h2>Companionship &amp; Meaningful Activities</h2>
+          <p>Emotional wellbeing matters just as much as physical health. Our caregivers build real relationships with residents — sharing conversations, participating in activities, and ensuring no one ever feels alone.</p>
+          <div class="svc-bullets">
+            <div class="svc-bullet">Daily social engagement &amp; conversation</div>
+            <div class="svc-bullet">Cognitive activities &amp; hobbies</div>
+            <div class="svc-bullet">Emotional support every day</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobility — real photo, reversed -->
+      <div class="svc-photo-card reverse">
+        <div class="svc-img"><img src="img_mobility.png" alt="Caregiver helping resident walk safely outside" /></div>
+        <div class="svc-content">
+          <div class="svc-num">02 — Service</div>
+          <h2>Mobility &amp; Safety Support</h2>
+          <p>We help residents move safely throughout the home and outdoors — always focused on preserving independence while reducing the risk of falls. Our caregivers are trained to assist with dignity.</p>
+          <div class="svc-bullets">
+            <div class="svc-bullet">Walking, transfers &amp; physical activity</div>
+            <div class="svc-bullet">Fall prevention strategies in place</div>
+            <div class="svc-bullet">Safe, accessible home environment</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 icon-based service cards -->
+      <div class="svc-icon-grid">
+
+        <!-- Personal Care -->
+        <div class="svc-icon-card">
+          <div class="svc-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </svg>
+          </div>
+          <div class="svc-num">03 — Service</div>
+          <h3>Personal Care &amp; Hygiene</h3>
+          <p>We assist with bathing, grooming, dressing, and toileting — always with privacy, patience, and respect. Our goal is to maintain each resident's dignity while helping them feel their best every single day.</p>
+          <div class="svc-bullets">
+            <div class="svc-bullet">Bathing, grooming &amp; dressing assistance</div>
+            <div class="svc-bullet">Oral hygiene &amp; skincare support</div>
+            <div class="svc-bullet">Privacy and dignity always respected</div>
+          </div>
+        </div>
+
+        <!-- Medication -->
+        <div class="svc-icon-card">
+          <div class="svc-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 006.27 2.4c-1.45 1.15-2.27 3.02-2.27 5.1 0 2.3 1.51 4.04 3 5.5l5 5 7-4z"/>
+              <path d="M3.27 6.96A7 7 0 0013 17"/>
+              <line x1="15" y1="9" x2="15" y2="15"/>
+              <line x1="12" y1="12" x2="18" y2="12"/>
+            </svg>
+          </div>
+          <div class="svc-num">04 — Service</div>
+          <h3>Medication Management</h3>
+          <p>We ensure residents receive the right medications at the right time, every day. Our staff tracks prescriptions, monitors for side effects, and keeps families informed — giving everyone peace of mind.</p>
+          <div class="svc-bullets">
+            <div class="svc-bullet">On-time, correct dosage every day</div>
+            <div class="svc-bullet">Prescription tracking &amp; coordination</div>
+            <div class="svc-bullet">Reduced risk of medication errors</div>
+          </div>
+        </div>
+
+        <!-- Meals -->
+        <div class="svc-icon-card">
+          <div class="svc-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M18 8h1a4 4 0 010 8h-1"/>
+              <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+              <line x1="6" y1="1" x2="6" y2="4"/>
+              <line x1="10" y1="1" x2="10" y2="4"/>
+              <line x1="14" y1="1" x2="14" y2="4"/>
+            </svg>
+          </div>
+          <div class="svc-num">05 — Service</div>
+          <h3>Nutritious Home-Cooked Meals</h3>
+          <p>Food is more than fuel — it's comfort. We prepare fresh, balanced meals daily, tailored to dietary needs and personal preferences. Residents share meals in a warm, social dining setting.</p>
+          <div class="svc-bullets">
+            <div class="svc-bullet">Fresh, home-style meals served daily</div>
+            <div class="svc-bullet">Accommodates dietary restrictions</div>
+            <div class="svc-bullet">Social, family-style dining experience</div>
+          </div>
+        </div>
+
+        <!-- Housekeeping -->
+        <div class="svc-icon-card">
+          <div class="svc-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <div class="svc-num">06 — Service</div>
+          <h3>Housekeeping &amp; Laundry</h3>
+          <p>A clean, tidy home makes a real difference in how people feel. We handle vacuuming, dusting, laundry, and linen changes so residents can enjoy a worry-free, refreshing space every day.</p>
+          <div class="svc-bullets">
+            <div class="svc-bullet">Regular cleaning &amp; sanitization</div>
+            <div class="svc-bullet">Laundry &amp; linen services included</div>
+            <div class="svc-bullet">Stress-free, comfortable environment</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ ADDITIONAL SERVICES ══════ -->
+  <section class="section" style="background:var(--cream);">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:40px;">
+        <div class="eyebrow">Additional Support</div>
+        <h2 class="h2">We Also Help With</h2>
+      </div>
+      <div class="add-grid">
+        <div class="add-item">
+          <div class="add-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <span>Medication Reminders</span>
+        </div>
+        <div class="add-item">
+          <div class="add-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <span>Meal Planning &amp; Prep</span>
+        </div>
+        <div class="add-item">
+          <div class="add-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <span>Appointment Coordination</span>
+        </div>
+        <div class="add-item">
+          <div class="add-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <span>Brain Injury Support</span>
+        </div>
+        <div class="add-item">
+          <div class="add-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          </div>
+          <span>Disability Inclusion Services</span>
+        </div>
+        <div class="add-item">
+          <div class="add-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <span>Developmental Support</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ GALLERY — house photos ONLY here ══════ -->
+  <section class="section" style="background:var(--white);">
+    <div class="container">
+      <div style="text-align:center;max-width:560px;margin:0 auto 48px;">
+        <div class="eyebrow">Our Home</div>
+        <h2 class="h2">A Beautiful Place<br>You'd Love to Call Home</h2>
+        <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-top:14px;">Take a look inside our warm, residential home in Rochester, MN — designed to feel like a real home, not a facility.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item span2">
+          <img src="1777324866718_image.png" alt="Cozy living room with fireplace" />
+          <div class="gal-label">Living Room — Warm &amp; Welcoming</div>
+        </div>
+        <div class="gallery-item">
+          <img src="1777324880908_image.png" alt="Private bedroom" />
+          <div class="gal-label">Private Bedroom</div>
+        </div>
+        <div class="gallery-item">
+          <img src="1777324900011_image.png" alt="Spacious bathroom" />
+          <div class="gal-label">Spacious Bathroom</div>
+        </div>
+        <div class="gallery-item">
+          <img src="1777324919196_image.png" alt="Home exterior" />
+          <div class="gal-label">Our Home — Rochester, MN</div>
+        </div>
+        <div class="gallery-item">
+          <img src="img_mobility.png" alt="Outside the home" />
+          <div class="gal-label">Safe Outdoor Spaces</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Not Sure What Your Loved One Needs?</h2>
+        <p>That's okay — most families aren't sure at first. Give us a call and we'll talk through it together. No pressure, just honest guidance.</p>
+        <div class="btn-row">
+          <a href="tel:5072001418" class="btn btn-white">📞 Call (507) 200-1418</a>
+          <a href="pages.html#contact" class="btn" style="background:transparent;color:white;border:2px solid rgba(255,255,255,0.4);">Send a Message</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Superior <span>Support</span> Living</div>
+        <p class="footer-tagline">Where Every Resident Is Family. Compassionate, personalized assisted living in Rochester, MN.</p>
+        <div class="footer-contact">
+          <a href="tel:5072001418">📞 (507) 200-1418</a>
+          <a href="mailto:info@superiorsupportliving.com">✉ info@superiorsupportliving.com</a>
+          <a href="https://maps.google.com/?q=3543+Stone+Point+Dr+NE+Rochester+MN" target="_blank">📍 3543 Stone Point Dr NE, Rochester, MN 55906</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="pages.html#about">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="pages.html#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="services.html">Personal Care</a>
+        <a href="services.html">Medication Help</a>
+        <a href="services.html">Meals &amp; Nutrition</a>
+        <a href="services.html">Companionship</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Superior Support Living. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="pages.html#privacy">Privacy Policy</a>
+        <a href="pages.html#contact">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobile-nav').classList.toggle('open');
+    document.body.classList.toggle('nav-open');
+  });
+</script>
+</body>
+</html>
